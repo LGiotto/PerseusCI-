@@ -54,21 +54,25 @@ jobs:
           case "${{ github.event.inputs.region }}" in
           "EN")
             echo "BUNDLE_ID=com.YoStarEN.AzurLane" >> $GITHUB_ENV
+            echo "Folder=smali_classes2" >> $GITHUB_ENV
             ;;
           "JP")
             echo "BUNDLE_ID=com.YoStarJP.AzurLane" >> $GITHUB_ENV
+            echo "Folder=smali_classes2" >> $GITHUB_ENV
             ;;
           "KR")
             echo "BUNDLE_ID=kr.txwy.and.blhx" >> $GITHUB_ENV
+            echo "Folder=smali_classes2" >> $GITHUB_ENV
             ;;
           "TW")
             echo "BUNDLE_ID=com.hkmanjuu.azurlane.gp" >> $GITHUB_ENV
+            echo "Folder=smali" >> $GITHUB_ENV
             ;;
           esac
         shell: bash
 
       - name: Build Perseus APK
-        run: ./patch_perseus.sh ${{ env.BUNDLE_ID }}
+        run: ./patch_perseus.sh ${{ env.BUNDLE_ID }} ${{ env.Folder }}
 
       - name: Zipalign and Sign Android release
         run: ./zipalign_sign.sh
