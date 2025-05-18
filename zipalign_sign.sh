@@ -1,7 +1,7 @@
 #!/bin/bash
 PATH=$PATH:$ANDROID_HOME/build-tools/32.0.0/
 for f in build/*.apk; do
-    if test -e $ANDROID_HOME
+    if test -e $ANDROID_HOME/build-tools
     then
         echo '文件已存在!'
     else
