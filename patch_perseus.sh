@@ -70,9 +70,11 @@ oncreate=$(grep -n -m 1 'onCreate' ${bundle_id}/${Folder}/com/unity3d/player/Uni
 sed -ir "s#\($oncreate\)#.method private static native init(Landroid/content/Context;)V\n.end method\n\n\1#" ${bundle_id}/${Folder}/com/unity3d/player/UnityPlayerActivity.smali
 sed -ir "s#\($oncreate\)#\1\n    const-string v0, \"Perseus\"\n\n\    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V\n\n    invoke-static {p0}, Lcom/unity3d/player/UnityPlayerActivity;->init(Landroid/content/Context;)V\n#" ${bundle_id}/${Folder}/com/unity3d/player/UnityPlayerActivity.smali
 
-echo "Build Patched Azur Lane apk"
-java -jar apktool.jar -q -f b ${bundle_id} -o build/${bundle_id}.patched.apk
-
 echo "Set Github Release version"
 version=($(jq -r '.version_name' AzurLane/manifest.json))
 echo "PERSEUS_VERSION=$(echo ${version})" >> $GITHUB_ENV
+
+echo "Build Patched Azur Lane apk"
+java -jar apktool.jar -q -f b ${bundle_id} -o build/${bundle_id}.patched.${version}.apk
+
+
