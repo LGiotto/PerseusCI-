@@ -66,7 +66,7 @@ jobs:
             ;;
           "TW")
             echo "BUNDLE_ID=com.hkmanjuu.azurlane.gp" >> $GITHUB_ENV
-            echo "Folder=smali" >> $GITHUB_ENV
+            echo "Folder=smali_classes2" >> $GITHUB_ENV
             ;;
           esac
         shell: bash

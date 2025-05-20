@@ -1,5 +1,5 @@
 #!/bin/bash
-PATH=$PATH:$ANDROID_HOME/build-tools/34.0.0/
+PATH=$PATH:$ANDROID_HOME/build-tools/36.0.0/
 for f in build/*.apk; do
     ls $ANDROID_HOME/build-tools
     mv $f ${f%.apk}.apk.unsigned
