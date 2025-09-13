@@ -60,7 +60,7 @@ if [ ! -f "${bundle_id}.apk" ]; then
 fi
 
 echo "Decompile Azur Lane apk"
-java -jar apktool.jar -f d ${bundle_id}.apk
+java -jar apktool.jar d -f ${bundle_id}.apk
 
 echo "Copy Perseus libs"
 cp -r Perseus/src/libs/. ${bundle_id}/lib/
@@ -75,6 +75,6 @@ version=($(jq -r '.version_name' AzurLane/manifest.json))
 echo "PERSEUS_VERSION=$(echo ${version})" >> $GITHUB_ENV
 
 echo "Build Patched Azur Lane apk"
-java -jar apktool.jar -f b ${bundle_id} -o build/${bundle_id}.patched.${version}.apk
+java -jar apktool.jar b -f ${bundle_id} -o build/${bundle_id}.patched.${version}.apk
 
 
